@@ -13,26 +13,13 @@ public class UserResponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String dummyId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user; // Foreign key linking to users table
 
     @Column(nullable = false)
     private Long questionId;
 
     @Column(nullable = false)
     private String selectedOption;
-
-    // Constructors, Getters, and Setters
-    public UserResponse() {
-    }
-
-
-
-//    public UserResponse(String dummyId, Question question, String selectedOption) {
-//        this.dummyId = dummyId;
-//        this.question = question;
-//        this.selectedOption = selectedOption;
-//    }
 }
-
-

@@ -6,7 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 @Entity
 @Table(name = "user_story_feedback")
 public class UserStoryFeedback {
@@ -14,8 +13,9 @@ public class UserStoryFeedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String dummyId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user; // Foreign key linking to users table
 
     @ManyToOne
     @JoinColumn(name = "story_id", nullable = false)
@@ -23,14 +23,4 @@ public class UserStoryFeedback {
 
     @Column(nullable = false)
     private String similarityLevel;
-
-    // Constructors, Getters, and Setters
-    public UserStoryFeedback() {
-    }
-
-    public UserStoryFeedback(String dummyId, Story story, String similarityLevel) {
-        this.dummyId = dummyId;
-        this.story = story;
-        this.similarityLevel = similarityLevel;
-    }
 }

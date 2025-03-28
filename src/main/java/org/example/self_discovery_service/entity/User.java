@@ -1,26 +1,29 @@
 package org.example.self_discovery_service.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String dummyId;
-
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String passwordHash;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    // Constructors, Getters, and Setters
+    @Column(name = "last_name")
+    private String lastName;
+
+
+    @Column(name="password", nullable = false)
+    private String password;
 }
